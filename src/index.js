@@ -30,7 +30,7 @@ h3.innerHTML = `${day} <br> ${hours}:${minutes}${ampm}`;
 event.preventDefault();
 let button = document.querySelector("button");
 event.preventDefault();
-button.addEventListener("click", searchCity);
+button.addEventListener("click", handleSubmit);
 
 function convertToFahrenheit(event) {
   event.preventDefault();
