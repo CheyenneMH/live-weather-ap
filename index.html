@@ -21,7 +21,7 @@
 
 <body>
     <style>
-        body {
+body {
     color: #02005c;
     font-family: "Amatic SC", cursive;
     font-family: "Source Sans Pro", sans-serif;
@@ -35,11 +35,13 @@ h1 {
 }
 
 h3 {
-    text-shadow: 0px 15px 15px #afe4c9;
     font-size: 42px;
 }
 
 h5 {
+    font-size: 42px;
+}
+p {
     font-size: 42px;
 }
 
@@ -51,20 +53,20 @@ ul {
 }
 
 button {
-    background: #3fc5f0;
+    background: #a9e736;
     padding: 8px 16px;
     margin: 0 auto 30px auto;
-    border: 1px solid #3fc5f0;
+    border: 1px solid #a9e736;
     border-radius: 20px;
-    box-shadow: 5px 10px 10px #afe4c9;
+    box-shadow: 5px 10px 10px #cffa80;
     transition: all 200ms ease;
 }
 
 button:hover {
-    background: #afe4c9;
+    background: #cffa80;
     color: white;
-    border: 1px solid #afe4c9;
-    box-shadow: 5px 10px 10px #3fc5f0;
+    border: 1px solid #cffa80;
+    box-shadow: 5px 10px 10px #a9e736;
 }
 
 .sixDayList {
@@ -78,8 +80,8 @@ button:hover {
     bottom: 20px;
     left: 110px;
     font-size: 20px;
-    background: #3fc5f0;
-    border: 5px solid #3fc5f0;
+    background: #a9e736;
+    border: 5px solid #a9e736;
     border-radius: 20px;
 }
 
@@ -93,7 +95,7 @@ button:hover {
 .weatherBody {
     position: relative;
     text-align: center;
-    margin: 0px 160 40px;
+    margin: 0px 120px 40px 160px;
     padding-bottom: 50px;
 }
 
@@ -101,33 +103,36 @@ button:hover {
     padding: 10px 20px 10px 20px;
     margin: 20px 100px;
     border-radius: 20px;
-    border: 0 solid linear-gradient(113deg, #3fc5f0 23%, #eef5b2 49%, #42dee1 100%);
-    background: linear-gradient(113deg, #3fc5f0 23%, #eef5b2 49%, #42dee1 100%);
+    border: 0 solid linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
+    background: linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
 }
 
 .currentWeather {
-    margin: 0px 100px 0px 0px;
+    margin: 20px 0px 0px 0px;
+    padding: auto 50px auto 50px;
     font-size: 32px;
     border-radius: 25px;
     background-color: #fffdfb;
+    box-shadow: 5px 10px 10px #a9e736;
 }
 
 .sixDayForecast {
-    margin: 0px 0px 0px 100px;
+    margin: 20px 0px 0px 0px;
     border-radius: 25px;
     background-color: #fffdfb;
+    box-shadow: 5px 10px 10px #a9e736;
 }
 
 .additionalWeatherInfo {
-    margin: 40px auto 0px;
+    margin: 0px 125px 0px 125px;
     border-radius: 25px;
     background: transparent;
-    border: 0px solid #68bde1;
+    border: transparent;
     padding: 0;
 }
 
 .addList {
-    font-size: 20px;
+    font-size: 25px;
     margin: 30px 0 50px;
     font-weight: 400;
 }
@@ -156,9 +161,11 @@ button:hover {
         <div class="container weatherBody">
             <div class="row">
                 <div class="col card currentWeather" style="width: 18rem;">
-                    <img src="media/sunny.png" class="card-img-top currentWeatherimg" alt="...">
                     <div class="card-body">
                         <h5 class="card-title" id="current-city">City</h5>
+                        <hr>
+                        <img src="media/sunny.png" class="card-img-top currentWeatherimg" alt="..." width="80">
+                        <br>
                         <br>
                         <p class="card-text" id="temperature">45<span class="units">
                                 <a href="#" id="celsius-link">°C</a> |
@@ -171,8 +178,10 @@ button:hover {
                     <div class="card-body">
                         <hr>
                         <h3>Sunday</h3>
+                        <hr>
                         <p class="card-text">
                         <ul>
+                            <li class="addList">Sunny<span id="condition"></span></li>
                             <li class="addList">Humidity: <span id="humidity"></span>%</li>
                             <li class="addList">Wind: <span id="wind"></span> mph</li>
                         </ul>
@@ -183,6 +192,7 @@ button:hover {
                 <div class="col card sixDayForecast" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Upcoming</h5>
+                        <hr>
                         <p class="card-text">
                         <ul class="sixDayul">
                             <li class="sixDayList">Mon <img src=media/sunny.png width="40"></li>
@@ -190,7 +200,6 @@ button:hover {
                             <li class="sixDayList">Weds <img src=media/sunny.png width="40"></li>
                             <li class="sixDayList">Thurs <img src=media/sunny.png width="40"></li>
                             <li class="sixDayList">Fri <img src=media/sunny.png width="40"></li>
-                            <li class="sixDayList">Sat <img src=media/sunny.png width="40"></li>
                         </ul>
                         </p>
                     </div>
@@ -225,7 +234,7 @@ button:hover {
                 "Saturday"
             ];
             let day = days[now.getDay()];
-            h3.innerHTML = `${day} <br> ${hours}:${minutes}${ampm}`;
+            h3.innerHTML = `${day}, <br> ${hours}:${minutes}${ampm}`;
 
             let button = document.querySelector("button");
             button.addEventListener("click", handleSubmit);
