@@ -170,7 +170,7 @@ button:hover {
                         <p class="card-text" id="temperature">45<span class="units">
                                 <a href="#" id="celsius-link">°C</a> |
                                 <a href="#" id="fahrenheit-link">°F</a>
-                            </span><br><span id="description"></span></p>
+                            </span><br><p class="addList"><span id="condition"></span>
                         <br>
                     </div>
                 </div>
@@ -181,7 +181,8 @@ button:hover {
                         <hr>
                         <p class="card-text">
                         <ul>
-                            <li class="addList">Sunny<span id="condition"></span></li>
+                            <li class="addList"><span id="condition"></span></li>
+                            <li class="addList">Feels Like: <span id="feelsLike"></span></li>
                             <li class="addList">Humidity: <span id="humidity"></span>%</li>
                             <li class="addList">Wind: <span id="wind"></span> mph</li>
                         </ul>
@@ -257,20 +258,36 @@ button:hover {
             let celsiusLink = document.querySelector("#celsius-link");
             celsiusLink.addEventListener("click", convertToCelsius);
 
-            function showTemperature(response) {
+            function showCurrent(response) {
                 let temperature = Math.round(response.data.main.temp);
                 let city = response.data.name;
-                console.log(`${city} ${temperature}`);
                 let currentCity = document.querySelector("#current-city");
                 currentCity.innerHTML = `${city}`;
+                
                 let currentTemperature = document.querySelector("#temperature");
                 currentTemperature.innerHTML = `${temperature}°F`;
+                
+                let description = response.data.weather[0].main;
+                let currentCondition = document.querySelector("#condition");
+                currentCondition.innerHTML = `${description}`
+                
+                let humidity = response.data.main.humidity;
+                let currentHumidity = document.querySelector("#humidity");
+                currentHumidity.innerHTML = `${humidity}`;
+                
+                let feelsLike = Math.round(response.data.main.feels_like);
+                let currentFeel = document.querySelector("#feelsLike");
+                currentFeel.innerHTML = `${feelsLike}°F`;
+                
+                let wind = Math.round(response.data.wind.speed);
+                let currentWind = document.querySelector("#wind");
+                currentWind.innerHTML = `${wind}`;
             }
 
             function searchCity(city) {
                 let apiKey = "57b2c40fdae71a6ba41d72685e3226e2";
                 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-                axios.get(apiUrl).then(showTemperature);
+                axios.get(apiUrl).then(showCurrent);
             }
 
             function handleSubmit(event) {
