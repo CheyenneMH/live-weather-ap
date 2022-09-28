@@ -22,7 +22,7 @@
 <body>
     <style>
 body {
-    color: #02005c;
+    color: #02005C;
     font-family: "Amatic SC", cursive;
     font-family: "Source Sans Pro", sans-serif;
     background-image: url("media/sunny.jpg");
@@ -43,12 +43,13 @@ h5 {
 }
 p {
     font-size: 42px;
+    margin-bottom: 0;
 }
 
 ul {
     list-style: none;
     padding: 10px;
-    margin: 20px 40px 0px;
+    margin: 0px 40px 0px;
     font-size: 42px;
 }
 
@@ -96,12 +97,12 @@ button:hover {
     position: relative;
     text-align: center;
     margin: 0px 120px 40px 160px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
 }
 
 .displayBox {
-    padding: 10px 20px 10px 20px;
-    margin: 20px 100px;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 100px 80px;
     border-radius: 20px;
     border: 0 solid linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
     background: linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
@@ -136,7 +137,12 @@ button:hover {
     margin: 30px 0 50px;
     font-weight: 400;
 }
-
+.currentList{
+    list-style: none;
+    font-size: 25px;
+    margin: 0px;
+    font-weight: 400; 
+}
 .sixDayul {
     list-style: none;
     padding: 10px;
@@ -147,14 +153,29 @@ button:hover {
 .units {
     font-size: 20px;
 }
+#feelsLike {
+    color:#cd4545;
+}
+#humidity {
+    color:#cd4545;
+}
+#wind {
+    color:#cd4545;
+}
+#high{
+    color:#cd4545;
+}
+#low{
+    color:#cd4545;
+}
     </style>
     <h1>
         <div class="signature">Weather by Cheyenne Howell</div>
     </h1>
     <div class="displayBox">
-        <div class="searchBar">
-            <form class="search-form" id="search-form">
-                <input type="text" name="name" id="name" required>
+                <div class="searchBar">
+                <form class="search-form" id="search-form">
+                <input type="text" name="name" id="name" required autocomplete="off">
                 <button>City Search</button>
             </form>
         </div>
@@ -164,13 +185,14 @@ button:hover {
                     <div class="card-body">
                         <h5 class="card-title" id="current-city">City</h5>
                         <hr>
-                        <img src="media/sunny.png" class="card-img-top currentWeatherimg" alt="..." width="80">
+                        <img src="media/sunny.png" class="card-img-top currentWeatherimg" alt="..." width="50">
                         <br>
                         <br>
                         <p class="card-text" id="temperature">45<span class="units">
                                 <a href="#" id="celsius-link">°C</a> |
                                 <a href="#" id="fahrenheit-link">°F</a>
-                            </span><br><p class="addList"><span id="condition"></span>
+                            </span><br><p class="currentList"><span id="condition"></span>
+                            <li class="currentList">H: <span id="high"></span>&nbsp;&nbsp;&nbsp;L:<span id="low"></span></li>
                         <br>
                     </div>
                 </div>
@@ -183,8 +205,8 @@ button:hover {
                         <ul>
                             <li class="addList"><span id="condition"></span></li>
                             <li class="addList">Feels Like: <span id="feelsLike"></span></li>
-                            <li class="addList">Humidity: <span id="humidity"></span>%</li>
-                            <li class="addList">Wind: <span id="wind"></span> mph</li>
+                            <li class="addList">Humidity: <span id="humidity"></span></li>
+                            <li class="addList">Wind: <span id="wind"></span></li>
                         </ul>
                         </p>
                         <hr>
@@ -240,24 +262,6 @@ button:hover {
             let button = document.querySelector("button");
             button.addEventListener("click", handleSubmit);
 
-            function convertToFahrenheit(event) {
-                event.preventDefault();
-                let temperatureElement = document.querySelector("#temperature");
-                temperatureElement.innerHTML = 66;
-            }
-
-            function convertToCelsius(event) {
-                event.preventDefault();
-                let temperatureElement = document.querySelector("#temperature");
-                temperatureElement.innerHTML = 19;
-            }
-
-            let fahrenheitLink = document.querySelector("#fahrenheit-link");
-            fahrenheitLink.addEventListener("click", convertToFahrenheit);
-
-            let celsiusLink = document.querySelector("#celsius-link");
-            celsiusLink.addEventListener("click", convertToCelsius);
-
             function showCurrent(response) {
                 let temperature = Math.round(response.data.main.temp);
                 let city = response.data.name;
@@ -273,7 +277,7 @@ button:hover {
                 
                 let humidity = response.data.main.humidity;
                 let currentHumidity = document.querySelector("#humidity");
-                currentHumidity.innerHTML = `${humidity}`;
+                currentHumidity.innerHTML = `${humidity}%`;
                 
                 let feelsLike = Math.round(response.data.main.feels_like);
                 let currentFeel = document.querySelector("#feelsLike");
@@ -281,7 +285,15 @@ button:hover {
                 
                 let wind = Math.round(response.data.wind.speed);
                 let currentWind = document.querySelector("#wind");
-                currentWind.innerHTML = `${wind}`;
+                currentWind.innerHTML = `${wind}mph`;
+
+                let high = Math.round(response.data.main.temp_max);
+                let currentHigh = document.querySelector("#high");
+                currentHigh.innerHTML = `${high}°F`;
+
+                let low = Math.round(response.data.main.temp_min);
+                let currentLow = document.querySelector("#low");
+                currentLow.innerHTML = `${low}°F`;
             }
 
             function searchCity(city) {
