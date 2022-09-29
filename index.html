@@ -167,19 +167,22 @@ ul {
 #low{
     color:#cd4545;
 }
-#conversion{
+#celsius{
     background: #a9e736;
     padding: 0px;
     margin: 0px;
-    border: 1px solid #a9e736;
+    border: 5px solid #a9e736;
     border-radius: 20px;
     transition: all 200ms ease;
     font-size: 20px;
 }
-#conversion:hover {
+#celsius:hover {
     background: #cffa80;
     color: white;
-    border: 1px solid #cffa80;
+    border: 5px solid #cffa80;
+}
+#degreesF{
+   color:#cd4545; 
 }
     </style>
     <h1>
@@ -201,10 +204,10 @@ ul {
                         <img src="media/sunny.png" class="card-img-top currentWeatherimg" alt="..." width="50">
                         <br>
                         <br>
-                        <p class="card-text"><span id="temperature"></span>
+                        <p class="card-text"><span id="temperature"></span><span id="degreesCurrent">°F</span>
                             <br>
                             <p class="currentList"><span id="condition"></span>
-                            <li class="currentList">H: <span id="high"></span>&nbsp;&nbsp;&nbsp;L:<span id="low"></span></li>
+                            <li class="currentList">H: <span id="high"></span><span id="degreesF">°F</span>&nbsp;&nbsp;&nbsp;L:<span id="low"></span><span id="degreesF">°F</span></li>
                         <br>
                     </div>
                 </div>
@@ -216,13 +219,13 @@ ul {
                         <p class="card-text">
                         <ul>
                             <li class="addList"><span id="condition"></span></li>
-                            <li class="addList">Feels Like: <span id="feelsLike"></span></li>
+                            <li class="addList">Feels Like: <span id="feelsLike"></span><span id="degreesF">°F</span></li>
                             <li class="addList">Humidity: <span id="humidity"></span></li>
                             <li class="addList">Wind: <span id="wind"></span></li>
                         </ul>
                         </p>
                         <ul>
-                        <li class="addList" id="conversion"><button id="conversion" id="celsius">Need in celsius?</button></li>
+                        <li class="addList" id="conversion"><button id="celsius">Need in celsius?</button></li>
                         </ul>
                         <hr>
                     </div>
@@ -277,14 +280,17 @@ ul {
             let button = document.querySelector("#searchButton");
             button.addEventListener("click", handleSubmit);
 
+
             function showCurrent(response) {
-                let temperature = Math.round(response.data.main.temp);
+                farenheitTemperature = (response.data.main.temp);
+                let temperature = Math.round(farenheitTemperature);
                 let city = response.data.name;
                 let currentCity = document.querySelector("#current-city");
                 currentCity.innerHTML = `${city}`;
                 
+                
                 let currentTemperature = document.querySelector("#temperature");
-                currentTemperature.innerHTML = `${temperature}°F`;
+                currentTemperature.innerHTML = `${temperature}`;
                 
                 let description = response.data.weather[0].main;
                 let currentCondition = document.querySelector("#condition");
@@ -296,7 +302,7 @@ ul {
                 
                 let feelsLike = Math.round(response.data.main.feels_like);
                 let currentFeel = document.querySelector("#feelsLike");
-                currentFeel.innerHTML = `${feelsLike}°F`;
+                currentFeel.innerHTML = `${feelsLike}`;
                 
                 let wind = Math.round(response.data.wind.speed);
                 let currentWind = document.querySelector("#wind");
@@ -304,11 +310,11 @@ ul {
 
                 let high = Math.round(response.data.main.temp_max);
                 let currentHigh = document.querySelector("#high");
-                currentHigh.innerHTML = `${high}°F`;
+                currentHigh.innerHTML = `${high}`;
 
                 let low = Math.round(response.data.main.temp_min);
                 let currentLow = document.querySelector("#low");
-                currentLow.innerHTML = `${low}°F`;
+                currentLow.innerHTML = `${low}`;
             }
 
             function searchCity(city) {
@@ -325,6 +331,21 @@ ul {
 
             let searchForm = document.querySelector("#search-form");
             searchForm.addEventListener("submit", handleSubmit);
+
+            function displayCelsiusTemperature(event){
+                event.preventDefault();
+                let currentTemperature = document.querySelector("#temperature");                
+                let celsiusTemperature = Math.round((farenheitTemperature -32*5/9));
+                currentTemperature.innerHTML = `${celsiusTemperature}`;
+                let celsiusDegrees = document.querySelector("#degreesCurrent");
+                celsiusDegrees.innerHTML = "°C";
+            }
+            
+            let farenheitTemperature = null;
+
+            let celsiusLink = document.querySelector("#celsius");
+            celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
 
             searchCity("Broomfield");
     </script>
