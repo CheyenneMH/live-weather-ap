@@ -181,6 +181,9 @@ ul {
 #degreesF{
    color:#cd4545; 
 }
+#forecastValues{
+    font-size: 20px;
+}
     </style>
     <h1>
         <div class="signature">Weather by Cheyenne Howell<br><a href="https://github.com/CheyenneMH/live-weather-ap" target="_blank">Git Hub</a></div>
@@ -233,7 +236,10 @@ ul {
                         <hr>
                         <p class="card-text">
                         <ul class="sixDayul">
-                            <li class="sixDayList">Mon <img src=media/sunny.png width="40"></li>
+                            <li class="sixDayList">Mon <img src=media/sunny.png width="40">
+                            <br>
+                            <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
+                            </li>
                             <li class="sixDayList">Tues <img src=media/sunny.png width="40"></li>
                             <li class="sixDayList">Weds <img src=media/sunny.png width="40"></li>
                             <li class="sixDayList">Thurs <img src=media/sunny.png width="40"></li>
