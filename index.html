@@ -328,7 +328,7 @@ ul {
                 let currentLow = document.querySelector("#low");
                 currentLow.innerHTML = `${low}`;
 
-                displayForecast();
+                getForecast(response.data.coord);
 
                 if (description === "Clouds") {
                 document.getElementById("weatherIconLarge").src = "media/cloudy.png";
@@ -371,7 +371,8 @@ ul {
             let celsiusLink = document.querySelector("#celsius");
             celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-            function displayForecast(){
+            function displayForecast(response) {
+                console.log(response.data.daily);
                 let forecastElement = document.querySelector("#forecast");
 
                 let forecastHTML = `<div class="column">`;
@@ -390,7 +391,13 @@ ul {
                 forecastElement.innerHTML = forecastHTML;
                 console.log(forecastHTML);
             }
-
+    
+            function getForecast(coordinates) {
+            console.log(coordinates);
+            let apiKey = "57b2c40fdae71a6ba41d72685e3226e2";
+            let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+            axios.get(apiUrl).then(displayForecast);
+            }
 
             searchCity("Broomfield");
     </script>
