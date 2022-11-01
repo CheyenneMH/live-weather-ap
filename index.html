@@ -371,22 +371,40 @@ ul {
             let celsiusLink = document.querySelector("#celsius");
             celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
+            function formatDay(timestamp) {
+                let date = new Date(timestamp * 1000);
+                let day = date.getDay();
+                let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+                return days[day];
+                }
+
             function displayForecast(response) {
-                console.log(response.data.daily);
+                let forecast = response.data.daily;
+
                 let forecastElement = document.querySelector("#forecast");
 
                 let forecastHTML = `<div class="column">`;
-                let days = ["Tues", "Weds", "Thurs", "Fri",];
-                days.forEach(function(day) {
-                    forecastHTML = 
-                    forecastHTML + 
-                    `
-                    <li id="forecast">${day} 
+                forecast.forEach(function (forecastDay, index) {
+                    if (index < 5) {
+                        forecastHTML =
+                            forecastHTML +
+                            `
+                    <li id="forecast">${formatDay(forecastDay.dt)} 
                     <img id="weatherIcon1" src=media/sunny.png width="40">
                     <br>
-                    <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
+                    <span id="forecastValues">
+                        <span id="forecastHigh">H:${Math.round(
+                        forecastDay.temp.max)}
+                        °F</span>
+                        &nbsp;
+                        <span id="forecastLow">L:${Math.round(
+                            forecastDay.temp.min)}°F</span>
+                    </span>
                     `;
-                });
+                    }
+                    });
+                    
                 forecastHTML = forecastHTML + `</div>`;
                 forecastElement.innerHTML = forecastHTML;
                 console.log(forecastHTML);
