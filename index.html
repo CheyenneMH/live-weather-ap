@@ -69,7 +69,7 @@ ul {
     border: 1px solid #cffa80;
 }
 
-.sixDayList {
+#forecast {
     margin: 0px 0 30px;
     text-align: left;
     font-size: 28px;
@@ -147,7 +147,7 @@ ul {
     margin: 0px;
     font-weight: 400; 
 }
-.sixDayul {
+#sixDayul {
     list-style: none;
     padding: 10px;
     margin: 0px 81px 0px;
@@ -248,24 +248,8 @@ ul {
                         <h5 class="card-title">Upcoming</h5>
                         <hr>
                         <p class="card-text">
-                        <ul class="sixDayul">
-                            <li class="sixDayList">Mon <img id="weatherIcon1" src=media/sunny.png width="40">
-                            <br>
-                            <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
-                            </li>
-                            <li class="sixDayList">Tues <img id="weatherIcon2" src=media/sunny.png width="40">
-                            <br>
-                            <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
-                            </li>
-                            <li class="sixDayList">Weds <img id="weatherIcon3" src=media/sunny.png width="40">
-                            <br>
-                            <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
-                            </li>
-                            <li class="sixDayList">Thurs <img id="weatherIcon4" src=media/sunny.png width="40">
-                            <br>
-                            <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
-                            </li>
-                            <li class="sixDayList">Fri <img id="weatherIcon5" src=media/sunny.png width="40">
+                        <ul id="sixDayul">
+                            <li id="forecast">Mon <img id="weatherIcon1" src=media/sunny.png width="40">
                             <br>
                             <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
                             </li>
@@ -344,6 +328,8 @@ ul {
                 let currentLow = document.querySelector("#low");
                 currentLow.innerHTML = `${low}`;
 
+                displayForecast();
+
                 if (description === "Clouds") {
                 document.getElementById("weatherIconLarge").src = "media/cloudy.png";
                 document.getElementById("weatherIcon1").src = "media/cloudy.png";
@@ -384,6 +370,26 @@ ul {
 
             let celsiusLink = document.querySelector("#celsius");
             celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+            function displayForecast(){
+                let forecastElement = document.querySelector("#forecast");
+
+                let forecastHTML = `<div class="column">`;
+                let days = ["Tues", "Weds", "Thurs", "Fri",];
+                days.forEach(function(day) {
+                    forecastHTML = 
+                    forecastHTML + 
+                    `
+                    <li id="forecast">${day} 
+                    <img id="weatherIcon1" src=media/sunny.png width="40">
+                    <br>
+                    <span id="forecastValues"><span id="forecastHigh">H:80°F</span>&nbsp;<span id="forecastLow">L:59°F</span></span>
+                    `;
+                });
+                forecastHTML = forecastHTML + `</div>`;
+                forecastElement.innerHTML = forecastHTML;
+                console.log(forecastHTML);
+            }
 
 
             searchCity("Broomfield");
