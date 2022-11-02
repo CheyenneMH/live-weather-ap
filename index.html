@@ -30,7 +30,8 @@ body {
     size: 1920px 1080px;
 }
 h1 {
-    margin-bottom: 100px;
+    margin-bottom: 15px;
+    margin-top: 50px;
 }
 
 h3 {
@@ -76,9 +77,11 @@ ul {
 }
 
 .signature {
-    position: fixed;
-    top: 20px;
-    left: 110px;
+    position:absolute;
+    bottom:0;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    margin-left: 15px;
     font-size: 20px;
     background: #a9e736;
     border: 5px solid #a9e736;
@@ -334,6 +337,18 @@ ul {
                         document.getElementById("weatherIconLarge").src = "media/cloudy.png";
                         document.body.style.backgroundImage = "url('media/cloudy.jpg')";
                         document.getElementById("displayBox").style.background = "linear-gradient(113deg, #9DC5BB 23%, #DEE5E5 49%, #304950 100%)";
+                    } if (description === "Rain") {
+                        document.getElementById("weatherIconLarge").src = "media/raining.png";
+                        document.body.style.backgroundImage = "url('media/raining.jpg')";
+                        document.getElementById("displayBox").style.background = "linear-gradient(113deg, #9DC5BB 23%, #DEE5E5 49%, #304950 100%)"; 
+                    } if (description === "Snow") {
+                        document.getElementById("weatherIconLarge").src = "media/snowing.png";
+                        document.body.style.backgroundImage = "url('media/snowing.jpg')";
+                        document.getElementById("displayBox").style.background = "linear-gradient(113deg, #9DC5BB 23%, #DEE5E5 49%, #304950 100%)"; 
+                    } if (description === "Thunderstorm") {
+                        document.getElementById("weatherIconLarge").src = "media/thunderstorm.png";
+                        document.body.style.backgroundImage = "url('media/thunderstorm.jpg')";
+                        document.getElementById("displayBox").style.background = "linear-gradient(113deg, #9DC5BB 23%, #DEE5E5 49%, #304950 100%)";
                     }
                 }
 
@@ -412,7 +427,7 @@ ul {
                     axios.get(apiUrl).then(displayForecast);
                 }
 
-                searchCity("Broomfield");
+                searchCity("Denver");
     </script>
     </div>
 </body>
