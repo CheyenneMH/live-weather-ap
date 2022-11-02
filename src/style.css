@@ -1,10 +1,10 @@
 body {
-    color: #02005c;
+    color: #02005C;
     font-family: "Amatic SC", cursive;
     font-family: "Source Sans Pro", sans-serif;
     background-image: url("media/sunny.jpg");
-    background-size: 100%;
-    margin-bottom: 80px;
+    background-size: 1920px 1080px;
+    size: 1920px 1080px;
 }
 
 h1 {
@@ -12,110 +12,180 @@ h1 {
 }
 
 h3 {
-    text-shadow: 0px 15px 15px #afe4c9;
-    font-size: 42px;
+    font-size: 32px;
 }
 
 h5 {
-    font-size: 42px;
+    font-size: 32px;
+}
+
+p {
+    font-size: 32px;
+    margin-bottom: 0;
 }
 
 ul {
     list-style: none;
     padding: 10px;
-    margin: 20px 40px 0px;
-    font-size: 42px;
-}
-
-button {
-    background: #3fc5f0;
-    padding: 8px 16px;
-    margin: 0 auto 30px auto;
-    border: 1px solid #3fc5f0;
-    border-radius: 20px;
-    box-shadow: 5px 10px 10px #afe4c9;
-    transition: all 200ms ease;
-}
-
-button:hover {
-    background: #afe4c9;
-    color: white;
-    border: 1px solid #afe4c9;
-    box-shadow: 5px 10px 10px #3fc5f0;
-}
-
-.sixDayList {
-    margin: 10px 0 30px;
-    text-align: left;
+    margin: 0px 40px 0px;
     font-size: 32px;
+}
+
+#searchButton {
+    background: #a9e736;
+    padding: 8px 16px;
+    margin: 0;
+    border: 1px solid #a9e736;
+    border-radius: 20px;
+    box-shadow: 2.5px 5px 5px #cffa80;
+    transition: all 200ms ease;
+    text-align: inline;
+}
+
+#searchButton:hover {
+    background: #cffa80;
+    color: white;
+    border: 1px solid #cffa80;
+}
+
+#forecast {
+    margin: 0px 0 30px;
+    text-align: left;
+    font-size: 28px;
 }
 
 .signature {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     left: 110px;
     font-size: 20px;
-    background: #3fc5f0;
-    border: 5px solid #3fc5f0;
+    background: #a9e736;
+    border: 5px solid #a9e736;
     border-radius: 20px;
+    text-align: center;
 }
 
 .searchBar {
     position: relative;
     text-align: center;
     margin: 0px;
-    font-size: 24px;
+    font-size: 20px;
+    size: 1703px 75px;
 }
 
 .weatherBody {
     position: relative;
     text-align: center;
-    margin: 0px 160 40px;
-    padding-bottom: 50px;
+    margin: 0px 120px 20px 160px;
+    padding-bottom: 10px;
 }
 
 .displayBox {
-    padding: 10px 20px 10px 20px;
-    margin: 20px 100px;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 100px 80px;
     border-radius: 20px;
-    border: 0 solid linear-gradient(113deg, #3fc5f0 23%, #eef5b2 49%, #42dee1 100%);
-    background: linear-gradient(113deg, #3fc5f0 23%, #eef5b2 49%, #42dee1 100%);
+    border: 0 solid linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
+    background: linear-gradient(113deg, #e3dcbd 23%, #FFE5B6 49%, #e7b836 100%);
 }
 
 .currentWeather {
-    margin: 0px 100px 0px 0px;
-    font-size: 32px;
+    margin: 20px 0px 0px 0px;
+    padding: auto 50px auto 50px;
+    font-size: 28px;
     border-radius: 25px;
     background-color: #fffdfb;
+    box-shadow: 5px 10px 10px #ffffff;
 }
 
 .sixDayForecast {
-    margin: 0px 0px 0px 100px;
+    margin: 20px 0px 0px 0px;
     border-radius: 25px;
     background-color: #fffdfb;
+    box-shadow: 5px 10px 10px #ffffff;
 }
 
 .additionalWeatherInfo {
-    margin: 40px auto 0px;
+    margin: 0px 125px 0px 125px;
     border-radius: 25px;
     background: transparent;
-    border: 0px solid #68bde1;
+    border: transparent;
     padding: 0;
 }
 
 .addList {
-    font-size: 20px;
-    margin: 30px 0 50px;
+    font-size: 25px;
+    margin: 0px 0 50px;
     font-weight: 400;
 }
 
-.sixDayul {
-    list-style: none;
-    padding: 10px;
-    margin: 20px 81px 0px;
-    font-size: 42px;
+#addListTop {
+    margin-top: 0px;
 }
 
-.units {
+.currentList {
+    list-style: none;
+    font-size: 28px;
+    margin: 0px;
+    font-weight: 400;
+}
+
+#sixDayul {
+    list-style: none;
+    padding: 10px;
+    margin: 0px 81px 0px;
+    font-size: 28px;
+}
+
+#feelsLike {
+    color: #cd4545;
+}
+
+#humidity {
+    color: #cd4545;
+}
+
+#wind {
+    color: #cd4545;
+}
+
+#high {
+    color: #cd4545;
+}
+
+#low {
+    color: #cd4545;
+}
+
+#celsius {
+    background: #a9e736;
+    padding: 0px;
+    margin: 0px;
+    border: 5px solid #a9e736;
+    border-radius: 20px;
+    box-shadow: 2.5px 5px 5px #cffa80;
+    transition: all 200ms ease;
     font-size: 20px;
+}
+
+#celsius:hover {
+    background: #cffa80;
+    color: white;
+    border: 5px solid #cffa80;
+}
+
+#conversion {
+    margin: 0px;
+}
+
+#degreesF {
+    color: #cd4545;
+}
+
+#forecastValues {
+    font-size: 20px;
+}
+
+#weatherIconLarge {
+    text-align: center;
+    padding-right: 50px;
 }
